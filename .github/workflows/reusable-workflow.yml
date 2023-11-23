@@ -3,8 +3,9 @@ name: 'Test composite actions'
 on:
   workflow_call:
     secrets:
-      SEMGREP_PUBLISH_TOKEN: ${{ secrets.SEMGREP_PUBLISH_TOKEN }}
-
+      SEMGREP_PUBLISH_TOKEN:
+        description: Semgrep token
+        required: true
 
 jobs:
   lint:
