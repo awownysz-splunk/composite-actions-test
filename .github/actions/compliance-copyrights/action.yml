@@ -1,6 +1,9 @@
 name: compliance-copyrights
+
 description: 'Reuse compliance check'
+
 runs-on: ubuntu-latest
+
 runs:
   using: "composite"
   steps:

@@ -1,6 +1,7 @@
 name: 'Test composite actions'
 
 on: workflow_call
+
 jobs:
   lint:
     name: 'Linting job.'
@@ -14,8 +15,29 @@ jobs:
   compliance-copyrights:
     name: 'Compliance copyrights'
     runs-on: ubuntu-latest
+    outputs:
+        proceed: ${{ steps.proceed.outputs.proceed }}
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v3
       - name: copyrights
         uses: ./.github/actions/compliance-copyrights
+      - name: proceed
+        id: proceed
+        shell: bash
+        run: echo "proceed=Yes" >> "$GITHUB_OUTPUT"
+
+
+  semgrep:
+    name: semgrep
+    needs:
+      - compliance-copyrights
+    if: ${{ needs.compliance-copyrights.outputs.proceed == 'Yes' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout repository'
+        uses: actions/checkout@v3
+      - name: 'Run semgrep'
+        uses: ./.github/actions/semgrep
+        with:
+          token: ${{ secrets.SEMGREP_PUBLISH_TOKEN }}
