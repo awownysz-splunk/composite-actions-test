@@ -12,6 +12,8 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - name: 'Checkout repository'
+      uses: actions/checkout@v3
     - name: Semgrep
       id: semgrep
       uses: semgrep/semgrep-action@v1
