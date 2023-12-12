@@ -12,8 +12,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Checkout
-      uses: actions/checkout@v3
     - name: Semgrep
       id: semgrep
       uses: semgrep/semgrep-action@v1
