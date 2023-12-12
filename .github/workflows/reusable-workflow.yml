@@ -21,10 +21,8 @@ jobs:
     outputs:
         proceed: ${{ steps.proceed.outputs.proceed }}
     steps:
-      - name: 'Checkout repository'
-        uses: actions/checkout@v3
       - name: copyrights
-        uses: ./.github/actions/compliance-copyrights
+        uses: awownysz-splunk/composite-actions-test/.github/actions/compliance-copyrights@main
       - name: proceed
         id: proceed
         shell: bash
