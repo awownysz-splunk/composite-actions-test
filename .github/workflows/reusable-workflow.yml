@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: lint
-        uses: awownysz-splunk/composite-actions-test/.github/actions/lint
+        uses: awownysz-splunk/composite-actions-test/.github/actions/lint@main
 
   compliance-copyrights:
     name: 'Compliance copyrights'
